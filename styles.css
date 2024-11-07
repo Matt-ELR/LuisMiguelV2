@@ -1,39 +1,108 @@
-body {
-    font-family: Arial, sans-serif;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+   font-family: Arial, Helvetica, sans-serif;
+    background-color: #bfd6b0;
+    
+}
+.pie{
+    background: #85d952;
+    
+}
+img{
+    width: 40px;
+}
+.logo{
     display: flex;
     align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    margin: 0;
-    background-color: #ffffff;
+    gap: 10px;
 }
-
-.floating-island {
-    width: 80%;
-    max-width: 400px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 
-                0 10px 24px rgba(0, 0, 0, 0.1),
-                0 20px 40px rgba(0, 0, 0, 0.15);
-    padding: 20px;
-    text-align: center;
-    margin: 20px;
+span{
+    font-size: 24px;
 }
-
-h1 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-top: 0;
+.fb{
+    background: rgb(54, 54, 185);
+    padding: 8px;
+    border-radius: 50px;
+    color: rgb(255, 255, 255);
 }
-
-p {
-    font-size: 1rem;
-    color: #666;
-    margin: 10px 0 20px;
+.tw{
+    background: rgb(0, 0, 0);
+    padding: 8px;
+    border-radius: 50px;
+    color: rgb(255, 255, 255);
 }
-
-#google-pay-button-container {
+.in{
+    background: rgb(206, 20, 144);
+    padding: 8px;
+    border-radius: 50px;
+    color: rgb(255, 255, 255);
+}
+.li{
+    background: rgb(30, 30, 97);
+    padding: 8px;
+    border-radius: 50px;
+    color: rgb(255, 255, 255);
+}
+.yt{
+    background: rgb(255, 0, 0);
+    padding: 8px;
+    border-radius: 50px;
+    color: rgb(255, 255, 255);
+}
+.header{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+}
+.logotipo{
+    font-size: 19px;
+    color: black;
+
+}
+.section{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 40px;
+}
+.section div{
+    display: flex;
+    flex-direction: column;
+}
+div h2{
+    color: rgb(0, 0, 0);
+    padding: 10px 0;
+}
+a{
+    color: aliceblue;
+    text-decoration: none;
+    padding: 5px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+input{
+    background: none;
+    border: solid 2px rgb(47, 119, 19);
+    padding: 10px 20px;
+
+}
+button{
+    padding: 10px 20px;
+    background-color: aliceblue;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+}
+.derechos{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: rgb(44, 150, 44);
+    color: aliceblue;
 }
