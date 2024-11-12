@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+    <form action="../php/registro.php" method="POST">
+        <label for="Usuario">Usuario:</label><br>
+        <input type="text" id="Usuario" name="Usuario" required><br><br>
+
+        <label for="Contraseña">Contraseña:</label><br>
+        <input type="password" id="Contraseña" name="contraseña" required><br><br>
+
+        <label for="tipoCuenta">Tipo de cuenta:</label><br>
+        <select name="tipoCuenta" id="tipoCuenta">
+            <option value="Paciente">Paciente</option>
+            <option value="Administrador">Administrador</option>
+            <option value="Medico">Medico</option>
+        </select><br><br>
+
+        <button type="submit">Registrarse</button>
+    </form>
+</body>
+</html>
