@@ -21,18 +21,18 @@ if ($user && password_verify($password, $user['password'])) {
 
     // Redirect based on account type
     if ($user['account_type'] === 'admin') {
-        header("Location: admin_dashboard.php");
-    } elseif ($user['account_type'] === 'user') {
-        header("Location: user_dashboard.php");
+        header("Location: ../Admin/panel-admin.php");
+    } elseif ($user['account_type'] === 'medico') {
+        header("Location: ../Medico/panel-medico.php");
     } else {
-        header("Location: guest_dashboard.php");
+        header("Location: ../Paciente/panel-paciente.php");
     }
     exit();
 } else {
     // Login failed
     echo "<script>
     alert('Invalid username or password!');
-    location.href='../login.html';
+    location.href='../Sesion/login.html';
     </script>";
 }
 
