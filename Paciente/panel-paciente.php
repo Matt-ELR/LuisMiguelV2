@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['account_type'] !== 'admin') {
+if ($_SESSION['account_type'] !== 'paciente') {
     header("Location: ../Sesion/login.html"); // Redirect if not an admin
     exit();
 }

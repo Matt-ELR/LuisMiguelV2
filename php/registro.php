@@ -13,7 +13,7 @@ $stmt->bind_param("sss", $Usuario, $Contraseña, $tipoCuenta);
 // Ejecuta la declaración y verifica si fue exitosa
 if ($stmt->execute()) {
     echo "<script>
-    alert('Se ha añadido');
+    alert('Se ha añadido el usuario');
     location.href='../Sesion/FormRegistro.html';
     </script>";
 } else {
