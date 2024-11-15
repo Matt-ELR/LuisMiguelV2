@@ -2,19 +2,24 @@
 include 'conexion.php'; // Conecta a la BD
 
 // Recupera y sanitiza los datos de entrada
-$Usuario = $_POST['Usuario']; // Actualizado para que coincida con el nombre del campo del formulario
-$Contraseña = password_hash($_POST['contraseña'], PASSWORD_BCRYPT); // Hashea la contraseña
-$tipoCuenta = $_POST['tipoCuenta'];
+$correo = $_POST['correo'];
+$telefono = $_POST['telefono'];
+$nombre = $_POST['nombre'];
+$edad = $_POST['edad'];
+$contraseña = $_POST['contraseña']; // Get the password from the form
+
+// Hash the password
+$hashed_password = password_hash($contraseña, PASSWORD_BCRYPT);
 
 // Utiliza una declaración preparada para prevenir la inyección SQL
-$stmt = $con->prepare("INSERT INTO users (username, password, account_type) VALUES (?, ?, ?)");
-$stmt->bind_param("sss", $Usuario, $Contraseña, $tipoCuenta);
+$stmt = $con->prepare("INSERT INTO Usuarios (correo, telefono, nombre, edad, contraseña) VALUES (?, ?, ?, ?, ?)");
+$stmt->bind_param("sssss", $correo, $telefono, $nombre, $edad, $hashed_password); // Use the hashed password
 
 // Ejecuta la declaración y verifica si fue exitosa
 if ($stmt->execute()) {
     echo "<script>
     alert('Se ha añadido el usuario');
-    location.href='../1-Sesion/FormRegistro.html';
+    location.href='../1-Sesion/login.html';
     </script>";
 } else {
     echo "<script>

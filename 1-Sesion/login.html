@@ -2,17 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Iniciar Sesión</title>
 </head>
 <body>
+    <h1>Iniciar Sesión</h1>
     <form action="../0-php/verificacion.php" method="POST">
-        <label>Usuario:</label>
-        <input type="text" name="username" required><br><br>
-        
-        <label>Contraseña:</label>
-        <input type="password" name="password" required><br><br>
+        <label for="correo">Correo:</label>
+        <input type="email" name="correo" required><br>
 
-        <button type="submit">Login</button>
+        <label for="contraseña">Contraseña:</label>
+        <input type="password" name="contraseña" required><br>
+
+        <input type="submit" value="Iniciar Sesión">
     </form>
+
+    <!-- Button to return to index -->
+    <button onclick="window.location.href='../index.html'">Volver al Inicio</button>
 </body>
 </html>

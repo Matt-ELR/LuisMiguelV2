@@ -3,36 +3,31 @@ session_start();
 include 'conexion.php'; // Conecta a la BD
 
 // Consigue datos
-$username = $_POST['username'];
-$password = $_POST['password'];
+$correo = $_POST['correo'];
+$contraseña = $_POST['contraseña'];
 
 // Retrieve user information from database
-$sql = "SELECT * FROM users WHERE username = ?";
+$sql = "SELECT * FROM Usuarios WHERE correo = ?";
 $stmt = $con->prepare($sql);
-$stmt->bind_param("s", $username);
+$stmt->bind_param("s", $correo);
 $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
-if ($user && password_verify($password, $user['password'])) {
+if ($user && password_verify($contraseña, $user['contraseña'])) { // Verify the hashed password
     // Successful login
-    $_SESSION['username'] = $user['username'];
-    $_SESSION['account_type'] = $user['account_type'];
+    $_SESSION['correo'] = $user['correo'];
+    $_SESSION['nombre'] = $user['nombre'];
+    $_SESSION['usuario_id'] = $user['usuario_id'];
 
-    // Redirect based on account type
-    if ($user['account_type'] === 'admin') {
-        header("Location: ../0-Admin/panelControl.php");
-    } elseif ($user['account_type'] === 'medico') {
-        header("Location: ../Medico/panel-medico.php");
-    } else {
-        header("Location: ../Paciente/panel-paciente.php");
-    }
+    // Redirect to a default user panel or dashboard
+    header("Location: ../3-Usuario/PanelUsuario.php");
     exit();
 } else {
     // Login failed
     echo "<script>
-    alert('Invalid username or password!');
-    location.href='../Sesion/login.html';
+    alert('Correo o contraseña inválidos!');
+    location.href='../1-Sesion/login.html';
     </script>";
 }
 
