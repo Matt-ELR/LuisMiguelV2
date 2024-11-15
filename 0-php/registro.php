@@ -14,12 +14,12 @@ $stmt->bind_param("sss", $Usuario, $Contraseña, $tipoCuenta);
 if ($stmt->execute()) {
     echo "<script>
     alert('Se ha añadido el usuario');
-    location.href='../Sesion/FormRegistro.html';
+    location.href='../1-Sesion/FormRegistro.html';
     </script>";
 } else {
     echo "<script>
     alert('El registro no pudo ser añadido');
-    location.href='../Sesion/FormRegistro.html';
+    location.href='../1-Sesion/FormRegistro.html';
     </script>";
 }
 

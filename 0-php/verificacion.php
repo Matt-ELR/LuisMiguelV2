@@ -21,7 +21,7 @@ if ($user && password_verify($password, $user['password'])) {
 
     // Redirect based on account type
     if ($user['account_type'] === 'admin') {
-        header("Location: ../Admin/panel-admin.php");
+        header("Location: ../0-Admin/panelControl.php");
     } elseif ($user['account_type'] === 'medico') {
         header("Location: ../Medico/panel-medico.php");
     } else {

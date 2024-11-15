@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['account_type'] !== 'paciente') {
-    header("Location: ../Sesion/login.html"); // Redirect if not an admin
+    header("Location: ../1-Sesion/login.html"); // Redirect if not an admin
     exit();
 }
 ?>
