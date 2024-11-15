@@ -61,7 +61,7 @@ $pacientes_result = $stmt->get_result();
                         <tr>
                             <td><?php echo htmlspecialchars($paciente['nombre']); ?></td>
                             <td>
-                                <button class="remove-button" data-paciente-id="<?php echo htmlspecialchars($paciente['paciente_id']); ?>">Eliminar</button>
+                                <button class="remove-button" data-paciente-id="<?php echo htmlspecialchars($paciente['paciente_id']); ?>">Dar de baja</button>
                             </td>
                         </tr>
                     <?php endwhile; ?>
