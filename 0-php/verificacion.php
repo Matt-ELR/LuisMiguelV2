@@ -1,8 +1,8 @@
 <?php
 session_start();
-include 'conexion.php'; // Conecta a la BD
+include 'conexion.php'; // Include database connection
 
-// Consigue datos
+// Get user input
 $correo = $_POST['correo'];
 $contraseña = $_POST['contraseña'];
 
@@ -19,7 +19,9 @@ if ($user && password_verify($contraseña, $user['contraseña'])) { // Verify th
     $_SESSION['correo'] = $user['correo'];
     $_SESSION['nombre'] = $user['nombre'];
     $_SESSION['usuario_id'] = $user['usuario_id'];
-
+    $_SESSION['account_type'] = $user['account_type']; // Assuming you have this field
+    $_SESSION['username'] = $user['nombre']; // Assuming you want to display the name
+    
     // Redirect to a default user panel or dashboard
     header("Location: ../3-Usuario/PanelUsuario.php");
     exit();
