@@ -2,21 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="../CSS/sesion.css">
 </head>
 <body>
-    <h1>Iniciar Sesión</h1>
-    <form action="../0-php/verificacion.php" method="POST">
-        <label for="correo">Correo:</label>
-        <input type="email" name="correo" required><br>
-
-        <label for="contraseña">Contraseña:</label>
-        <input type="password" name="contraseña" required><br>
-
-        <input type="submit" value="Iniciar Sesión">
-    </form>
-
-    <!-- Button to return to index -->
-    <button onclick="window.location.href='../index.html'">Volver al Inicio</button>
+    <div class="container">
+        <h1 class="form-title">Iniciar Sesión</h1>
+        <form action="../0-php/verificacion.php" method="POST" class="form">
+            <div class="form-group">
+                <label for="correo" class="form-label">Correo:</label>
+                <input type="email" name="correo" id="correo" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="contraseña" class="form-label">Contraseña:</label>
+                <input type="password" name="contraseña" id="contraseña" class="form-input" required>
+            </div>
+            <button type="submit" class="form-button">Iniciar Sesión</button>
+        </form>
+        <button class="return-button" onclick="window.location.href='../index.html'">Volver al Inicio</button>
+    </div>
 </body>
 </html>
