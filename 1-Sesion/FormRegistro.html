@@ -2,30 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+    <link rel="stylesheet" href="CSS/sesion.css">
 </head>
 <body>
-    <h1>Registro</h1>
-    <form action="../0-php/registro.php" method="POST">
-        <label for="correo">Correo:</label>
-        <input type="email" name="correo" required><br>
-
-        <label for="telefono">Teléfono:</label>
-        <input type="text" name="telefono" required><br>
-
-        <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" required><br>
-
-        <label for="edad">Edad:</label>
-        <input type="number" name="edad" required><br>
-
-        <label for="contraseña">Contraseña:</label>
-        <input type="password" name="contraseña" required><br>
-
-        <input type="submit" value="Registrar">
-    </form>
-
-    <!-- Button to return to index -->
-    <button onclick="window.location.href='../index.html'">Volver al Inicio</button>
+    <div class="container">
+        <h1 class="form-title">Registro</h1>
+        <form action="../0-php/registro.php" method="POST" class="form">
+            <div class="form-group">
+                <label for="correo" class="form-label">Correo:</label>
+                <input type="email" name="correo" id="correo" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono" class="form-label">Teléfono:</label>
+                <input type="text" name="telefono" id="telefono" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="edad" class="form-label">Edad:</label>
+                <input type="number" name="edad" id="edad" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="contraseña" class="form-label">Contraseña:</label>
+                <input type="password" name="contraseña" id="contraseña" class="form-input" required>
+            </div>
+            <button type="submit" class="form-button">Registrar</button>
+        </form>
+        <button class="return-button" onclick="window.location.href='../index.html'">Volver al Inicio</button>
+    </div>
 </body>
 </html>
