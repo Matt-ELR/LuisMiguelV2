@@ -1,34 +1,42 @@
 <?php
-include 'conexion.php'; // Conecta a la BD
+include 'conexion.php'; // Include database connection
 
-// Recupera y sanitiza los datos de entrada
-$correo = $_POST['correo'];
-$telefono = $_POST['telefono'];
-$nombre = $_POST['nombre'];
-$edad = $_POST['edad'];
-$contraseña = $_POST['contraseña']; // Get the password from the form
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $correo = $_POST['correo'];
+    $telefono = $_POST['telefono'];
+    $nombre = $_POST['nombre'];
+    $edad = $_POST['edad'];
+    $contraseña = password_hash($_POST['contraseña'], PASSWORD_DEFAULT); // Hash the password
+    $estado_pago = 'sin_realizar'; // Default value
 
-// Hash the password
-$hashed_password = password_hash($contraseña, PASSWORD_BCRYPT);
+    // Prepare SQL query to insert user data
+    $sql = "INSERT INTO Usuarios (correo, telefono, nombre, edad, contraseña, Estado_pago) 
+            VALUES (?, ?, ?, ?, ?, ?)";
+    $stmt = $con->prepare($sql);
 
-// Utiliza una declaración preparada para prevenir la inyección SQL
-$stmt = $con->prepare("INSERT INTO Usuarios (correo, telefono, nombre, edad, contraseña, Estado_pago) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("sssss", $correo, $telefono, $nombre, $edad, $hashed_password, 'sin_realizar'); // Use the hashed password
+    if ($stmt) {
+        $stmt->bind_param("sssiss", $correo, $telefono, $nombre, $edad, $contraseña, $estado_pago);
 
-// Ejecuta la declaración y verifica si fue exitosa
-if ($stmt->execute()) {
-    echo "<script>
-    alert('Se ha añadido el usuario');
-    location.href='../1-Sesion/login.html';
-    </script>";
+        if ($stmt->execute()) {
+            echo "<script>
+            alert('Registro exitoso. Por favor, inicie sesión.');
+            window.location.href = '../1-Sesion/login.html';
+            </script>";
+        } else {
+            echo "<script>
+            alert('Error al registrar usuario. Intente nuevamente más tarde.');
+            window.location.href = '../1-Sesion/registro.html';
+            </script>";
+        }
+
+        $stmt->close();
+    } else {
+        die("Error en la preparación de la consulta: " . $con->error);
+    }
+
+    $con->close();
 } else {
-    echo "<script>
-    alert('El registro no pudo ser añadido');
-    location.href='../1-Sesion/FormRegistro.html';
-    </script>";
+    header("Location: ../1-Sesion/registro.html");
+    exit();
 }
-
-// Cierra la declaración y la conexión a la base de datos
-$stmt->close();
-$con->close();
 ?>
