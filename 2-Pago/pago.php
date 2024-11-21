@@ -1,93 +1,49 @@
 <?php
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
-    header('Location: pago.php'); // Redirect to login page if not logged in
+    header("Location: ../1-Sesion/login.html");
     exit();
 }
+
+// Ensure 'Estado_pago' is available in the session
+if (!isset($_SESSION['Estado_Pago'])) {
+    die("Estado de pago no disponible. Por favor, contacte al soporte.");
+}
+
+// Bank account details
+$bankAccountDetails = [
+    "dueño" => "Juan el que da miedo",
+    "nCuenta" => "123456789012",
+    "cantidad" => "$50.00 MXN"
+];
+
+// Display content based on Estado_pago
+$estadoPago = $_SESSION['Estado_Pago'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Page</title>
-    <link rel="stylesheet" href="../CSS/styles.css">
-    <script src="https://pay.google.com/gp/p/js/pay.js" async></script>
+    <title>Detalles de Pago</title>
 </head>
 <body>
-    <div class="payment-container">
-        <h1>Proceed to Payment</h1>
-        <p>To provide you with the best service, we require a small fee.</p>
-        <div id="google-pay-button-container"></div>
-    </div>
+    <h1>Detalles de Pago</h1>
+    <?php if ($estadoPago === 'sin_realizar'): ?>
+        <p><strong>Nombre del Dueño:</strong> <?php echo $bankAccountDetails['dueño']; ?></p>
+        <p><strong>Número de Cuenta:</strong> <?php echo $bankAccountDetails['nCuenta']; ?></p>
+        <p><strong>Cantidad a Pagar:</strong> <?php echo $bankAccountDetails['cantidad']; ?></p>
 
-    <form id="payment-form" action="../0-php/controlPago.php" method="POST" style="display: none;">
-        <input type="hidden" name="pago_id" id="pago_id">
-        <input type="hidden" name="userId" value="<?php echo $_SESSION['usuario_id']; ?>">
-        <input type="hidden" name="amount" value="1.00"> <!-- Set the amount here -->
-        <input type="hidden" name="status" value="Exitoso"> <!-- Set the status here -->
-    </form>
-
-    <script>
-        // Load the Google Pay API button
-        function onGooglePayLoaded() {
-            const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
-
-            const button = paymentsClient.createButton({ onClick: onGooglePaymentButtonClicked });
-            document.getElementById('google-pay-button-container').appendChild(button);
-        }
-
-        // Handle button click
-        function onGooglePaymentButtonClicked() {
-            const paymentDataRequest = {
-                apiVersion: 2,
-                apiVersionMinor: 0,
-                allowedPaymentMethods: [{
-                    type: 'CARD',
-                    parameters: {
-                        allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-                        allowedCardNetworks: ['MASTERCARD', 'VISA']
-                    },
-                    tokenizationSpecification: {
-                        type: 'PAYMENT_GATEWAY',
-                        parameters: {
-                            gateway: 'example', // Replace 'example' with your gateway
-                            gatewayMerchantId: 'exampleMerchantId' // Replace 'exampleMerchantId' with your gateway merchant ID
-                        }
-                    }
-                }],
-                merchantInfo: {
-                    merchantId: 'your-merchant-id', // Replace with your test merchant ID
-                    merchantName: 'Your Merchant Name' // Replace with your merchant name
-                },
-                transactionInfo: {
-                    totalPriceStatus: 'FINAL',
-                    totalPrice: '1.00', // Replace with the actual price
-                    currencyCode: 'USD',
-                    countryCode: 'US'
-                }
-            };
-
-            const paymentsClient = new google.payments.api.PaymentsClient({ environment: 'TEST' });
-            paymentsClient.loadPaymentData(paymentDataRequest)
-                .then(paymentData => {
-                    // Process payment data
-                    console.log(paymentData); // Debug payment data
-                    const transactionId = paymentData.paymentMethodData.tokenizationData.token;
-
-                    // Set the transaction ID in the form
-                    document.getElementById('pago_id').value = transactionId;
-
-                    // Submit the form to the backend
-                    document.getElementById('payment-form').submit();
-                })
-                .catch(err => {
-                    console.error("Payment failed: ", err);
-                    alert("Payment failed. Please try again.");
-                });
-        }
-    </script>
-
-    <script async src="https://pay.google.com/gp/p/js/pay.js?onload=onGooglePayLoaded"></script>
+        <h2>Subir Comprobante de Pago</h2>
+        <form action="../0-php/subircomprobante.php" method="POST" enctype="multipart/form-data">
+            <label for="comprobante">Suba su comprobante de pago (JPG, JPEG, PNG o PDF):</label><br><br>
+            <input type="file" name="comprobante" id="comprobante" accept=".jpg, .jpeg, .png, .pdf" required><br><br>
+            <button type="submit">Subir</button>
+        </form>
+    <?php elseif ($estadoPago === 'pendiente'): ?>
+        <p>El comprobante de pago ha sido recibido. Espere a que un administrador lo valide para obtener acceso a la página web. Esto puede tardar entre 1 y 2 días laborales.</p>
+    <?php else: ?>
+        <p>Estado de pago desconocido. Por favor, contacte al soporte.</p>
+    <?php endif; ?>
 </body>
 </html>

@@ -20,14 +20,19 @@ if ($user && password_verify($contraseña, $user['contraseña'])) { // Verify th
     $_SESSION['nombre'] = $user['nombre'];
     $_SESSION['usuario_id'] = $user['usuario_id'];
     $_SESSION['username'] = $user['nombre']; // Assuming you want to display the name
+    $_SESSION['Estado_Pago'] = $user['Estado_Pago']; // New session variable
 
-    // Redirect to the default user panel
-    header("Location: ../3-Usuario/PanelUsuario.php");
+    // Redirect based on Estado_pago
+    if ($user['Estado_Pago'] !== 'aceptado') {
+        header("Location: ../2-Pago/pago.php");
+    } else {
+        header("Location: ../3-Usuario/PanelUsuario.php");
+    }
     exit();
-    
+
 } else {
-    // If not found in the first table, check the secondary table (e.g., Medicos)
-    $sql2 = "SELECT * FROM Medicos WHERE correo = ?";
+    // If not found in the first table, check the secondary table (e.g., Administrativo)
+    $sql2 = "SELECT * FROM Administrativo WHERE correo = ?";
     $stmt2 = $con->prepare($sql2);
     $stmt2->bind_param("s", $correo);
     $stmt2->execute();
@@ -35,7 +40,7 @@ if ($user && password_verify($contraseña, $user['contraseña'])) { // Verify th
     $medico = $result2->fetch_assoc();
 
     if ($medico && password_verify($contraseña, $medico['contraseña'])) { // Verify the hashed password
-        // Successful login for Medicos table
+        // Successful login for Administrativo table
         $_SESSION['correo'] = $medico['correo'];
         $_SESSION['nombre'] = $medico['nombre'];
         $_SESSION['ID'] = $medico['medico_id']; // Assuming ID field is medico_id
@@ -43,9 +48,9 @@ if ($user && password_verify($contraseña, $user['contraseña'])) { // Verify th
 
         // Redirect based on tipo_cuenta
         if ($medico['tipo_cuenta'] === 'Medico') {
-            header("Location: ../4-Medico/PanelMedico.php");
+            header("Location: ../0-Medicos/panelMedico.php");
         } elseif ($medico['tipo_cuenta'] === 'Admin') {
-            header("Location: ../5-Admin/PanelAdmin.php");
+            header("Location: ../0-Admin/panelAdmin.php");
         }
         exit();
     } else {
