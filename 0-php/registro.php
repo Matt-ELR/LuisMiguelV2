@@ -12,8 +12,8 @@ $contraseña = $_POST['contraseña']; // Get the password from the form
 $hashed_password = password_hash($contraseña, PASSWORD_BCRYPT);
 
 // Utiliza una declaración preparada para prevenir la inyección SQL
-$stmt = $con->prepare("INSERT INTO Usuarios (correo, telefono, nombre, edad, contraseña) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("sssss", $correo, $telefono, $nombre, $edad, $hashed_password); // Use the hashed password
+$stmt = $con->prepare("INSERT INTO Usuarios (correo, telefono, nombre, edad, contraseña, Estado_pago) VALUES (?, ?, ?, ?, ?)");
+$stmt->bind_param("sssss", $correo, $telefono, $nombre, $edad, $hashed_password, 'sin_realizar'); // Use the hashed password
 
 // Ejecuta la declaración y verifica si fue exitosa
 if ($stmt->execute()) {
