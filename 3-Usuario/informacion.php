@@ -25,7 +25,7 @@
                             <td><?php echo $fila['correo'] ?></td>
                             <td><?php echo $fila['telefono'] ?></td>
                             <td><?php echo $fila['edad'] ?></td>
-                            <td><a href="actualizarpro.php?id=<?php echo $fila['id'] ?>">Editar</a></td>
+                            <td><a href="actualizar.php?id=<?php echo $fila['usuario_id'] ?>">Editar</a></td>
                         </tr>
                     <?php } ?>
                 </table>
