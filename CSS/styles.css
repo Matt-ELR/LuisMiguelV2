@@ -81,7 +81,7 @@ span{
     border-radius: 50px;
     color: rgb(255, 255, 255);
 }
-.li{
+.link{
     background: rgb(30, 30, 97);
     padding: 8px;
     border-radius: 50px;
@@ -155,28 +155,11 @@ button{
     display: flex;
     justify-content: center;
 }
-/* body*/
-.general{
-    margin: auto;
-    margin-top: 50px;
-    width: 960px;
-    height: 800px;
-   background-color: #79bb4f;
-}
-.allado{
-    float: right;
-width: 300px;
-height: 500px;
-background-color: #408d50;
-}
-.bodyy{
-   
-    margin-top: 20px;
-    width: 640px;
-    height: 580px;
-    background-color: #021a06;
-}
+
+
 /* carrucel*/
+
+
 .tituloo{
     text-align: center;
     font-size: 40px;
@@ -184,7 +167,7 @@ background-color: #408d50;
 }
 .slider-box{
     width: 1280px;
-    height: auto ;
+    height: 1000px ;
     margin: 50px auto 0;
     overflow: hidden;
 }
