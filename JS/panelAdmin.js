@@ -1,17 +1,21 @@
-// Wait until the DOM is fully loaded
+// Ensure the script runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-    // Get the logout button element
-    const logoutButton = document.querySelector(".logout-button");
+    // Select the logout button using a more specific selector
+    const logoutButton = document.querySelector(".logout-container .logout-button");
 
+    // Check if the logout button exists
     if (logoutButton) {
-        // Add a click event listener
+        console.log("Cargado");
         logoutButton.addEventListener("click", (event) => {
-            // Display a confirmation dialog
+            console.log("Logout button clicked"); // Debug message
             const userConfirmed = confirm("¿Estás seguro de que deseas cerrar sesión?");
-            // If the user cancels, prevent the default action
             if (!userConfirmed) {
                 event.preventDefault();
             }
         });
+        
+    } else {
+        console.error("Logout button not found. Ensure the button has the correct class.");
     }
 });
+
