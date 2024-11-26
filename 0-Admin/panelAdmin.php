@@ -15,26 +15,30 @@ if (!isset($_SESSION['tipo_cuenta']) || $_SESSION['tipo_cuenta'] !== 'Admin') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Administrativo</title>
     <link rel="stylesheet" href="../CSS/adminPanel.css">
+    <script src="../JS/panelAdmin.js"></script>
+
 </head>
 <body>
     <div class="container">
         <!-- Panel for handling payment vouchers -->
-        <div class="panel">
+        <a href="../0-Admin/validarPago.php" class="panel">
             <h2>Validar Comprobantes</h2>
-            <a href="../0-Admin/validarComprobantes.php">Ir a validación</a>
-        </div>
+        </a>
 
         <!-- Panel for creating new administrative accounts -->
-        <div class="panel">
+        <a href="../0-Admin/crearCuentas.php" class="panel">
             <h2>Crear Cuentas</h2>
-            <a href="../0-Admin/crearCuentas.php">Ir a creación</a>
-        </div>
+        </a>
 
         <!-- Panel for handling accounts and patients -->
-        <div class="panel">
+        <a href="../0-Admin/gestionarCuentas.php" class="panel">
             <h2>Gestionar Cuentas y Pacientes</h2>
-            <a href="../0-Admin/gestionarCuentas.php">Ir a gestión</a>
-        </div>
+        </a>
+    </div>
+
+    <!-- Logout Button -->
+    <div class="logout-container">
+        <button onclick="window.location.href='../0-php/logout.php'" class="logout-button">Cerrar Sesión</button>
     </div>
 </body>
 </html>
