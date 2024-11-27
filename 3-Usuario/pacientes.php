@@ -41,7 +41,6 @@ $pacientes_result = $stmt->get_result();
             <ul>
                 <li><a href="PanelUsuario.php">Volver al Dashboard</a></li>
                 <li><a href="../0-php/logout.php">Cerrar Sesión</a></li>
-                <li><a href="new_page.php">Nueva Página</a></li>
             </ul>
         </nav>
     </header>
