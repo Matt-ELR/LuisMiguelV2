@@ -43,7 +43,7 @@ if ($user && password_verify($contraseña, $user['contraseña'])) { // Verify th
         // Successful login for Administrativo table
         $_SESSION['correo'] = $medico['correo'];
         $_SESSION['nombre'] = $medico['nombre'];
-        $_SESSION['ID'] = $medico['medico_id']; // Assuming ID field is medico_id
+        $_SESSION['ID'] = $medico['ID']; // Assuming ID field is medico_id
         $_SESSION['tipo_cuenta'] = $medico['tipo_cuenta']; // Should be 'Medico' or 'Admin'
 
         // Redirect based on tipo_cuenta

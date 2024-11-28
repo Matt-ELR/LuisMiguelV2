@@ -61,6 +61,7 @@ $pacientes_count = $pacientes_result->num_rows; // Count of associated patients
                     <th>Género</th>
                     <th>Altura</th>
                     <th>Peso</th>
+                    <th>Menú</th> <!-- New column for the "Ver Menú" button -->
                 </tr>
             </thead>
             <tbody>
@@ -72,6 +73,10 @@ $pacientes_count = $pacientes_result->num_rows; // Count of associated patients
                             <td><?php echo htmlspecialchars($paciente['genero']); ?></td>
                             <td><?php echo htmlspecialchars($paciente['altura']); ?> cm</td>
                             <td><?php echo htmlspecialchars($paciente['peso']); ?> kg</td>
+                            <td>
+                                <!-- Button to view the menus of the patient -->
+                                <a href="../5-Menu/verMenus.php?paciente_id=<?php echo $paciente['paciente_id']; ?>" class="view-menu-button">Ver Menú</a>
+                            </td>
                         </tr>
                     <?php endwhile; ?>
                 <?php else: ?>

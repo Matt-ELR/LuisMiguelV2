@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -42,105 +42,118 @@
 .header-boton:hover {
     background-color: #1e7e34; /* Verde más oscuro */
 }
-body{
-   font-family: Arial, Helvetica, sans-serif;
+body {
+    font-family: Arial, Helvetica, sans-serif;
     background-color: #9fc785;
-    
 }
-.pie{
+
+.pie {
     background: #85d952;
-   
-   
 }
-img{
+
+img {
     width: 40px;
 }
-.logo{
+
+.logo {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-span{
+
+span {
     font-size: 24px;
 }
-.fb{
+
+.fb {
     background: rgb(54, 54, 185);
     padding: 8px;
     border-radius: 50px;
     color: rgb(255, 255, 255);
 }
-.tw{
+
+.tw {
     background: rgb(0, 0, 0);
     padding: 8px;
     border-radius: 50px;
     color: rgb(255, 255, 255);
 }
-.in{
+
+.in {
     background: rgb(206, 20, 144);
     padding: 8px;
     border-radius: 50px;
     color: rgb(255, 255, 255);
 }
-.link{
+
+.link {
     background: rgb(30, 30, 97);
     padding: 8px;
     border-radius: 50px;
     color: rgb(255, 255, 255);
 }
-.yt{
+
+.yt {
     background: rgb(255, 0, 0);
     padding: 8px;
     border-radius: 50px;
     color: rgb(255, 255, 255);
 }
-/* header*/
-.footer-header{
+
+.footer-header {
     display: flex;
     justify-content: space-between;
     padding: 20px;
     align-items: center;
 }
-.logotipo{
+
+.logotipo {
     font-size: 19px;
     color: black;
-
 }
-.section{
+
+.section {
     display: flex;
     justify-content: space-evenly;
     gap: 40px;
 }
-.section div{
+
+.section div {
     display: flex;
     flex-direction: column;
 }
-div h2{
+
+div h2 {
     color: rgb(0, 0, 0);
     padding: 10px 0;
 }
-a{
+
+a {
     color: aliceblue;
     text-decoration: none;
     padding: 5px;
 }
-form{
+
+form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-input{
+
+input {
     background: none;
     border: solid 2px rgb(47, 119, 19);
     padding: 10px 20px;
-
 }
-button{
+
+button {
     padding: 10px 20px;
     background-color: aliceblue;
     color: rgb(0, 0, 0);
     font-size: 18px;
 }
-.derechos{
+
+.derechos {
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -148,63 +161,65 @@ button{
     color: aliceblue;
 }
 
-.infoo{
+.infoo {
     background-color: #28a745;
-    height:100px;
+    height: 100px;
     margin: 5%;
     display: flex;
     justify-content: center;
 }
 
 
-/* carrucel*/
-
-
-.tituloo{
-    text-align: center;
-    font-size: 40px;
-    padding-top: 50px;
-}
-.slider-box{
-    width: 1280px;
-    height: 1000px ;
+/* Smaller carousel */
+.slider-box {
+    width: 80%; /* Reduced width */
+    max-width: 900px; /* Max width of carousel */
+    height: 500px; /* Adjusted height for smaller carousel */
     margin: 50px auto 0;
     overflow: hidden;
 }
-.slider-box ul{
+
+.slider-box ul {
     display: flex;
     padding: 0;
     width: 400%;
     animation: slide 20s infinite alternate ease-in-out;
 }
-.slider-box li{
+
+.slider-box li {
     width: 100%;
     list-style: none;
     position: relative;
+    display: flex; /* Ensure items are displayed as flex */
+    justify-content: center; /* Center the content */
+    align-items: center; /* Vertically center the images */
 }
-.slider-box img{
-    width: 100%;
+
+.slider-box img {
+    width: 100%; /* Ensures images scale within the new width */
+    height: 100%; /* Maintain aspect ratio */
+    object-fit: cover; /* Makes sure the image covers the container without distortion */
+    object-position: center; /* Center the image in the container */
 }
+
 @keyframes slide {
-    0%{margin-left: 0;}
-    20%{margin-left: 0;}
+    0% { margin-left: 0; }
+    20% { margin-left: 0; }
 
-    25%{margin-left: -100%;}
-    45%{margin-left: -100%;}
+    25% { margin-left: -100%; }
+    45% { margin-left: -100%; }
 
-    50%{margin-left: -200%;}
-    70%{margin-left: -200%;}
+    50% { margin-left: -200%; }
+    70% { margin-left: -200%; }
 
-    75%{margin-left: -300%;}
-    100%{margin-left: -300%;}
+    75% { margin-left: -300%; }
+    100% { margin-left: -300%; }
 }
-@media(max-width:901px){
 
-    body{
-        padding: 30px;
+/* Responsive adjustments for smaller screens */
+@media(max-width:901px) {
+    .slider-box {
+        width: 100%; /* Ensure full width on smaller screens */
+        height: 400px; /* Slightly reduced height */
     }
-    .slider-box{
-        width: 100%;
-    }
-    
 }
