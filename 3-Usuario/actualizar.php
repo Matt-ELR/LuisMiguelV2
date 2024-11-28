@@ -1,6 +1,6 @@
 <?php  include '../0-php/conexion.php';
-$Usuario_id = $_REQUEST['usuario_id'];
-$select = $con -> query("SELECT * FROM usuarios WHERE usuario_id='$Usuario_id'");
+$usuario_id = $_REQUEST['usuario_id'];
+$select = $con -> query("SELECT * FROM usuarios WHERE usuario_id='$usuario_id'");
 if ($fila = $select -> fetch_assoc()); {
 }
 ?>
