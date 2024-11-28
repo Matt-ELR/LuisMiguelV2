@@ -223,3 +223,13 @@ button {
         height: 400px; /* Slightly reduced height */
     }
 }
+
+.custom-h2 {
+    text-align: center;
+    color: rgb(234, 240, 245);
+   
+}
+.textoa{
+    text-align: center;
+    color: beige;
+}
