@@ -35,43 +35,49 @@ $pacientes_result = $stmt->get_result();
 </head>
 <body>
 
-    <header>
-        <h1>Eliminar Paciente</h1>
-        <nav>
-            <ul>
-                <li><a href="PanelUsuario.php">Volver al Dashboard</a></li>
-                <li><a href="../0-php/logout.php">Cerrar Sesión</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Background -->
+    <div class="background"></div>
 
-    <main>
-        <h2>Pacientes Asociados</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if ($pacientes_result->num_rows > 0): ?>
-                    <?php while ($paciente = $pacientes_result->fetch_assoc()): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($paciente['nombre']); ?></td>
-                            <td>
-                                <button class="remove-button" data-paciente-id="<?php echo htmlspecialchars($paciente['paciente_id']); ?>">Dar de baja</button>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                <?php else: ?>
+    <!-- Main Container -->
+    <div class="content-container">
+        <header>
+            <h1>Eliminar Paciente</h1>
+            <nav>
+                <ul>
+                    <li><a href="PanelUsuario.php">Volver al Dashboard</a></li>
+                    <li><a href="../0-php/logout.php">Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Pacientes Asociados</h2>
+            <table>
+                <thead>
                     <tr>
-                        <td colspan="3">No hay pacientes asociados.</td>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </main>
+                </thead>
+                <tbody>
+                    <?php if ($pacientes_result->num_rows > 0): ?>
+                        <?php while ($paciente = $pacientes_result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($paciente['nombre']); ?></td>
+                                <td>
+                                    <button class="remove-button" data-paciente-id="<?php echo htmlspecialchars($paciente['paciente_id']); ?>">Dar de baja</button>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="3">No hay pacientes asociados.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </main>
+    </div>
 
 </body>
 </html>
