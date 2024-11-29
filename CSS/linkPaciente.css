@@ -1,153 +1,130 @@
-/* General Styling */
-body {
-    font-family: Arial, sans-serif;
+/* General Reset */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
 }
 
-/* Container */
-.container {
-    max-width: 600px;
-    margin: 50px auto;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
     padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
-/* Heading */
-h1 {
-    margin-bottom: 20px;
-    color: #333;
-}
-
-/* Form Styling */
-form {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 1.2em;
-    color: #333;
-}
-
-input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 1em;
-    color: white;
+/* Header Styles */
+header {
     background-color: #007bff;
-    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
     border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    margin-bottom: 20px;
 }
 
-button:hover {
-    background-color: #0056b3;
+/* Table Container */
+.table-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 0 auto;
+    width: 95%;
+    max-width: 1200px;
 }
 
-/* Message Styling */
-.message {
-    margin: 10px 0;
-    font-size: 1em;
-    color: red;
-}
-
-/* Patient Details */
-.patient-details {
-    margin-top: 20px;
-    text-align: left;
-}
-
-.patient-details h2 {
-    margin-bottom: 10px;
-    color: #333;
-}
-
-.patient-details p {
-    margin: 5px 0;
-    font-size: 1em;
-    color: #555;
-}
-
-/* Linked Patients Section */
-.linked-patients {
-    margin-top: 30px;
-}
-
+/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+thead {
+    background-color: #007bff;
+    color: white;
 }
 
 th, td {
-    border: 1px solid #ccc;
     padding: 10px;
-    text-align: center;
+    text-align: left;
+    border: 1px solid #ccc;
 }
 
 th {
+    font-weight: bold;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #e9ecef;
+}
+
+/* Subscroll for tables */
+.table-wrapper {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Button Styles */
+.action-btn {
+    display: inline-block;
+    padding: 8px 15px;
+    font-size: 14px;
+    color: white;
     background-color: #007bff;
-    color: white;
-}
-
-td button {
-    padding: 5px 10px;
-    font-size: 0.9em;
-    color: white;
-    background-color: #d9534f;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-td button:hover {
-    background-color: #c9302c;
-}
-/* Back Button Container */
-.back-button-container {
-    margin: 20px;
-    text-align: left;
-}
-
-/* Back Button Styling */
-.back-button {
-    background-color: #007bff;
-    color: white;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
+    text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
-.back-button:hover {
+.action-btn:hover {
     background-color: #0056b3;
 }
 
-.back-button:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+.action-btn.unlink {
+    background-color: #dc3545;
 }
 
-.warning {
-    color: #ff0000;
-    font-weight: bold;
-    margin-top: 10px;
+.action-btn.unlink:hover {
+    background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        font-size: 1.2em;
+    }
+
+    th, td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .action-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}
+
+.back-button {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.back-button .action-btn {
+    text-decoration: none;
 }

@@ -1,26 +1,31 @@
 <?php
 session_start();
-include 'conexion.php';
+if (!isset($_SESSION['ID'])) {
+    header("Location: ../1-Sesion/login.html");
+    exit();
+}
+
+require_once "conexion.php";
+
+// Get the current medic's ID
+$medico_id = $_SESSION['ID'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['paciente_id'])) {
     $paciente_id = intval($_POST['paciente_id']);
-    $medico_id = $_SESSION['ID'];
 
-    // Delete from Medico-Paciente table
-    $stmt = $con->prepare("DELETE FROM `Medico-Paciente` WHERE medico_id = ? AND paciente_id = ?");
-    $stmt->bind_param("ii", $medico_id, $paciente_id);
+    // Delete from medico-paciente
+    $sqlUnlink = "DELETE FROM `medico-paciente` WHERE medico_id = ? AND paciente_id = ?";
+    $stmtUnlink = $con->prepare($sqlUnlink);
+    $stmtUnlink->bind_param("ii", $medico_id, $paciente_id);
 
-    if ($stmt->execute()) {
-        $message = "Paciente desvinculado con éxito.";
-    } else {
-        $message = "Error al desvincular paciente.";
+    if ($stmtUnlink->execute()) {
+        // Clear numero_control in pacientes
+        $sqlUpdate = "UPDATE pacientes SET numero_control = NULL WHERE paciente_id = ?";
+        $stmtUpdate = $con->prepare($sqlUpdate);
+        $stmtUpdate->bind_param("i", $paciente_id);
+        $stmtUpdate->execute();
     }
-
-    $stmt->close();
-    $con->close();
-
-    // Redirect back to the main page
-    header("Location: ../0-Medicos/linkPaciente.php");
-    exit();
 }
-?>
+
+header("Location: ../0-Medicos/linkpaciente.php");
+exit();

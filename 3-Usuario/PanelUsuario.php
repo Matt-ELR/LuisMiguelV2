@@ -35,65 +35,72 @@ $pacientes_count = $pacientes_result->num_rows; // Count of associated patients
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
     <link rel="stylesheet" href="../CSS/usuario.css"> <!-- Adjusted path to the CSS file -->
 </head>
 <body>
 
-    <header>
-        <h1>Bienvenido, <?php echo htmlspecialchars($user['nombre']); ?></h1>
-        <nav>
-            <ul>
-                <li><a href="pacientes.php">Controlar pacientes</a></li>
-                <li><a href="informacion.php">Ver Información</a></li> <!-- Link to user info page -->
-                <li><a href="../0-php/logout.php">Cerrar Sesión</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Background -->
+    <div class="background"></div>
 
-    <main>
-        <h2>Pacientes Asociados</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Edad</th>
-                    <th>Género</th>
-                    <th>Altura</th>
-                    <th>Peso</th>
-                    <th>Menú</th> <!-- New column for the "Ver Menú" button -->
-                </tr>
-            </thead>
-            <tbody>
-                <?php if ($pacientes_count > 0): ?>
-                    <?php while ($paciente = $pacientes_result->fetch_assoc()): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($paciente['nombre']); ?></td>
-                            <td><?php echo htmlspecialchars($paciente['edad']); ?></td>
-                            <td><?php echo htmlspecialchars($paciente['genero']); ?></td>
-                            <td><?php echo htmlspecialchars($paciente['altura']); ?> cm</td>
-                            <td><?php echo htmlspecialchars($paciente['peso']); ?> kg</td>
-                            <td>
-                                <!-- Button to view the menus of the patient -->
-                                <a href="../5-Menu/verMenus.php?paciente_id=<?php echo $paciente['paciente_id']; ?>" class="view-menu-button">Ver Menú</a>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                <?php else: ?>
+    <!-- Main Container -->
+    <div class="content-container">
+        <header>
+            <h1>Bienvenido, <?php echo htmlspecialchars($user['nombre']); ?></h1>
+            <nav>
+                <ul>
+                    <li><a href="pacientes.php">Controlar pacientes</a></li>
+                    <li><a href="informacion.php">Ver Información</a></li> <!-- Link to user info page -->
+                    <li><a href="../0-php/logout.php">Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h2>Pacientes Asociados</h2>
+            <table>
+                <thead>
                     <tr>
-                        <td colspan="6">No hay pacientes asociados.</td>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Género</th>
+                        <th>Altura</th>
+                        <th>Peso</th>
+                        <th>Menú</th> <!-- New column for the "Ver Menú" button -->
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php if ($pacientes_count > 0): ?>
+                        <?php while ($paciente = $pacientes_result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($paciente['nombre']); ?></td>
+                                <td><?php echo htmlspecialchars($paciente['edad']); ?></td>
+                                <td><?php echo htmlspecialchars($paciente['genero']); ?></td>
+                                <td><?php echo htmlspecialchars($paciente['altura']); ?> cm</td>
+                                <td><?php echo htmlspecialchars($paciente['peso']); ?> kg</td>
+                                <td>
+                                    <!-- Button to view the menus of the patient -->
+                                    <a href="../5-Menu/verMenus.php?paciente_id=<?php echo $paciente['paciente_id']; ?>" class="view-menu-button">Ver Menú</a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6">No hay pacientes asociados.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
 
-        <!-- Button to add a new patient -->
-        <?php if ($pacientes_count < 3): ?>
-            <div>
-                <a href="../4-Paciente/FormularioPaciente.php" class="add-patient-button">Agregar Paciente</a>
-            </div>
-        <?php endif; ?>
-    </main>
+            <!-- Button to add a new patient -->
+            <?php if ($pacientes_count < 3): ?>
+                <div>
+                    <a href="../4-Paciente/FormularioPaciente.php" class="add-patient-button">Agregar Paciente</a>
+                </div>
+            <?php endif; ?>
+        </main>
+    </div>
 
 </body>
 </html>

@@ -1,12 +1,24 @@
-/* General Styles */
+/* Background */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background: url('../Images/fondo_imagen1.jpg') no-repeat center center fixed;
+    background-size: cover;
     color: #333;
 }
 
+/* Content Container */
+.content-container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: rgba(255, 248, 226, 0.9); /* White with transparency */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Header */
 header {
     background-color: #4CAF50;
     color: white;
@@ -14,7 +26,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px 10px 0 0;
 }
 
 header h1 {
@@ -44,22 +56,9 @@ header nav ul li a:hover {
     color: #d4f5d4;
 }
 
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 20px;
-    gap: 20px;
-}
-
-.pacientes-area,
-.user-info-area {
-    background: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+/* Main Content */
+main {
     padding: 20px;
-    flex: 1 1 calc(50% - 20px); /* Responsive flex item */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -68,6 +67,7 @@ h2 {
     color: #4CAF50;
 }
 
+/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -97,7 +97,8 @@ table tr:hover {
 
 /* Buttons */
 button,
-.add-patient-button {
+.add-patient-button,
+.view-menu-button {
     display: inline-block;
     padding: 10px 15px;
     font-size: 0.9em;
@@ -112,28 +113,12 @@ button,
 }
 
 button:hover,
-.add-patient-button:hover {
+.add-patient-button:hover,
+.view-menu-button:hover {
     background-color: #45a049;
     transform: scale(1.05);
 }
 
-button.remove-button {
-    background-color: #e74c3c;
-}
-
-button.remove-button:hover {
-    background-color: #c0392b;
-}
-
-button.return-button {
-    background-color: #6c757d;
-}
-
-button.return-button:hover {
-    background-color: #5a6268;
-}
-
-/* Add Patient Button */
 .add-patient-button {
     font-weight: bold;
     margin-top: 20px;
@@ -141,24 +126,10 @@ button.return-button:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        gap: 10px;
+    .content-container {
+        padding: 15px;
     }
 
-    .pacientes-area,
-    .user-info-area {
-        flex: 1 1 100%;
-    }
-
-    table th,
-    table td {
-        font-size: 0.9em;
-        padding: 8px;
-    }
-}
-
-@media (max-width: 480px) {
     header {
         flex-direction: column;
         align-items: flex-start;
@@ -179,9 +150,9 @@ button.return-button:hover {
         margin-bottom: 10px;
     }
 
-    button,
-    .add-patient-button {
-        font-size: 0.8em;
-        padding: 8px 12px;
+    table th,
+    table td {
+        font-size: 0.9em;
+        padding: 8px;
     }
 }
